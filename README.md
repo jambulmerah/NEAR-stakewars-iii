@@ -1,2 +1,2 @@
-#Panduan cara menjalankan node validator dan memasang staking pool
+# Panduan cara menjalankan node validator dan memasang staking pool
 
