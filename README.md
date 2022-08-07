@@ -305,7 +305,7 @@ cat $HOME/.near-credentials/shardnet/*shardnet.near.json
 
 ```
 echo 'export account_id=$(cat .near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id)' >> ~/.bash_profile
-echo 'export pool_id=$(cat .near-credentials/shardnet/0xjambulmerah.shardnet.near.json | jq -r .account_id | sed "s/shardnet/factory.shardnet/")' >> ~/.bash_profile
+echo 'export pool_id=$(cat .near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id | sed "s/shardnet/factory.shardnet/")' >> ~/.bash_profile
 source ~/.bash_profile
 ```
 ##### Buat file `validator_key.json`
