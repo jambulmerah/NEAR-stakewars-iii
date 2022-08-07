@@ -330,12 +330,12 @@ cat ~/.near/validator_key.json
 
 ![img](./images/12.png)
 
-### Become a validator
+## Become a validator
 Untuk menjadi validator dan masuk ke dalam set validator, minimal harus memenuhi kriteria keberhasilan.
 
-- **[x]** Node harus disinkronkan sepenuhnya
-- [x] validator_key.jsonHarus ada di tempatnya
-- [x] Kontrak harus diinisialisasi dengan public_key divalidator_key.json
+- [x] Node harus disinkronkan sepenuhnya
+- [x] `validator_key.json` Harus ada di tempatnya
+- [x] Kontrak harus diinisialisasi dengan public_key `divalidator_key.json`
 - [x] Account_id harus disetel ke id kontrak staking pool
 - [x] Harus ada delegasi yang cukup untuk memenuhi harga kursi minimum. Lihat harga kursi [di sini](https://explorer.shardnet.near.org/nodes/validators).
 - [x] Proposal harus diajukan dengan melakukan ping ke kontrak
@@ -344,4 +344,25 @@ Untuk menjadi validator dan masuk ke dalam set validator, minimal harus memenuhi
 
 Periksa status menjalankan node validator. Jika “Validator” muncul, kumpulan Anda dipilih dalam daftar validator saat ini.
 
-## Mount staking pool
+### Mount staking pool
+NEAR menggunakan pabrik staking pool dengan kontrak staking yang masuk daftar putih untuk memastikan dana delegator aman. Untuk menjalankan validator di NEAR, staking pool harus di-deploy ke akun NEAR dan diintegrasikan ke node validator NEAR. Delegator harus menggunakan UI atau baris perintah untuk mempertaruhkan ke kumpulan. Staking pool adalah kontrak pintar yang disebarkan ke akun NEAR.
+#### Terapkan kontrak staking pool
+##### Menyebarkan staking pool
+
+```
+near call factory.shardnet.near create_staking_pool '{"staking_pool_id": "<pool name>", "owner_id": "<accountId>", "stake_public_key": "<public key>", "reward_fee_fraction": {"numerator": 5, "denominator": 100}, "code_hash":"DD428g9eqLL8fWUxv8QSpVFzyHi1Qd16P8ephYCTmMSZ"}' --accountId=$account_id --amount=30 --gas=300000000000000
+```
+Dari contoh di atas, Anda perlu mengganti 
+
+* **Pool Name**: Staking pool name, pabrik secara otomatis menambahkan namanya ke parameter ini, menciptakan {pool_name}.{staking_pool_factory} 
+Contoh:
+
+-  Jika pool id adalah `0xjambulmerah` akan membuat : `0xjambulmerah.factory.shardnet.near`
+
+* **Owner ID**: Akun SHARDNET milik anda (contoh `0xjambulmerah.shardnet.near`) yang akan mengelola staking pool.
+* **Public Key**: Kunci publik dalam file **validator_key.json** Anda. 
+* **5**: Biaya yang akan dikenakan oleh pool (misalnya dalam hal ini 5 di atas 100 adalah 5% dari biaya).
+
+> **Note**: Pastikan untuk memiliki setidaknya 30 NEAR tersedia, itu adalah minimum yang diperlukan untuk penyimpanan
+Contoh : near call stake_wars_validator.factory.shardnet.near --amount 30 --accountId stakewars.shardnet.near --gas=300000000000000 
+
