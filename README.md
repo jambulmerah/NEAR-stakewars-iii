@@ -80,7 +80,9 @@ source $HOME/.bash_profile
 
 ### Statistik validator
 Sekarang setelah environment telah di konfigurasi, mari kita uji CLI dan gunakan perintah berikut untuk berinteraksi dengan blockchain serta untuk melihat statistik validator. Ada tiga laporan yang digunakan untuk memantau status validator di jaringan **shardnet**:
+
 * 1- Proposals
+
 Proposal oleh validator menunjukkan bahwa mereka ingin masuk ke set validator, agar proposal dapat diterima harus memenuhi harga kursi minimum.
 Use command:
 ```
@@ -91,6 +93,7 @@ Itu dapat berubah dari proposal baru atau beberapa validator menjadi offline.
 **Note**:: saat ini tidak memperhitungkan kickout offline dan hadiah untuk zaman saat ini
 
 * 2- Validators current
+
 Ini menunjukkan daftar validator aktif di zaman saat ini, jumlah blok yang diproduksi, jumlah blok yang diharapkan, dan tarif online. Digunakan untuk memantau jika validator mengalami masalah.
 Use command:
 ```
@@ -98,6 +101,7 @@ near validators current
 ```
 
 * 3- Validators next
+
 Ini menunjukkan validator yang proposalnya diterima satu epoch yang lalu, dan yang akan masuk ke set validator di epoch berikutnya.
 Use command:
 ```
@@ -167,6 +171,7 @@ Agar berfungsi dengan baik, node NEAR memerlukan direktori kerja dan beberapa fi
 neard --home ~/.near init --chain-id shardnet --download-genesis
 ```
 Perintah ini akan membuat struktur direktori dan akan menghasilkan `config.json`, `node_key.json`, dan `genesis.json` pada jaringan yang telah Anda lewati.
+
 * `config.json`- Parameter konfigurasi yang responsif terhadap cara kerja node. config.json berisi informasi yang diperlukan agar node dapat berjalan di jaringan, cara berkomunikasi dengan peer, dan cara mencapai konsensus. Meskipun beberapa opsi dapat dikonfigurasi. Secara umum validator telah memilih untuk menggunakan config.json default yang disediakan.
 
 * `genesis.json`- File dengan semua data yang dimulai jaringan di genesis. Ini berisi akun awal, kontrak, kunci akses, dan catatan lain yang mewakili keadaan awal blockchain. File genesis.json adalah snapshot dari status jaringan pada suatu titik waktu. Di akun kontak, saldo, validator aktif, dan informasi lain tentang jaringan.
