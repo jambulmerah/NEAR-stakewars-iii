@@ -90,7 +90,7 @@ near proposals
 ```
 Harga kursi yang diharapkan dihitung berdasarkan proposal dan validator yang diamati sejauh ini.
 Itu dapat berubah dari proposal baru atau beberapa validator menjadi offline.
-**Note**:: saat ini tidak memperhitungkan kickout offline dan hadiah untuk zaman saat ini
+> **Note**: saat ini tidak memperhitungkan kickout offline dan hadiah untuk zaman saat ini
 
 * 2- Validators current
 
@@ -366,3 +366,7 @@ Contoh:
 > **Note**: Pastikan untuk memiliki setidaknya 30 NEAR tersedia, itu adalah minimum yang diperlukan untuk penyimpanan
 Contoh : near call stake_wars_validator.factory.shardnet.near --amount 30 --accountId stakewars.shardnet.near --gas=300000000000000 
 
+Untuk mengubah parameter pool, seperti mengubah jumlah komisi yang dibebankan menjadi 1% pada contoh di bawah ini, gunakan perintah ini: 
+```
+near call $pool_id update_reward_fee_fraction '{"reward_fee_fraction": {"numerator": 1, "denominator": 100}}' --accountId $account_id --gas=300000000000000
+``` 
