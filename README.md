@@ -333,7 +333,7 @@ cat ~/.near/validator_key.json
 ### Become a validator
 Untuk menjadi validator dan masuk ke dalam set validator, minimal harus memenuhi kriteria keberhasilan.
 
-- [x] Node harus disinkronkan sepenuhnya
+- [x] Node harus disinkronkan sepenuhnya #244
 - [x] validator_key.jsonHarus ada di tempatnya
 - [x] Kontrak harus diinisialisasi dengan public_key divalidator_key.json
 - [x] Account_id harus disetel ke id kontrak staking pool
