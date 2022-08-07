@@ -106,10 +106,10 @@ near validators next
 Satatus `New` adalah validator yang akan masuk ke set validator aktif pada epoch berikutnya, `Rewarded` Adalah validator aktif yang berhasil bertahan dari epoch sebelumnya, `Kicked out` Adalah validator yang akan  di keluarkan pada epoch berikutnya karna masalah tertentu
 
 ## Setup node 
-#### Install developer tools
+#### Install dependencies
 
 ```
-sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python3-pip protobuf-compiler libssl-dev pkg-config clang llvm build-essential make -y
+sudo apt install -y git binutils-dev libcurl4-openssl-dev zlib1g-dev libdw-dev libiberty-dev cmake gcc g++ python3-pip protobuf-compiler libssl-dev pkg-config clang llvm build-essential make ccze jq -y
 ```
 #### Install docker
 ```
@@ -190,3 +190,38 @@ wget -O ~/.near/config.json https://s3-us-west-1.amazonaws.com/build.nearprotoco
 ```
 Sebenarnya kita bisa juga menggunakan parameter `--download-config-url` saat init sebelumnya
 
+## Run the node
+* Buat service systemd
+```
+sudo tee /etc/systemd/system/neard.service > /dev/null <<EOF
+[Unit]
+Description=NEARd Daemon Service
+
+[Service]
+Type=simple
+User=$USER
+#Group=near
+WorkingDirectory=$HOME/.near
+ExecStart=$(which neard) run
+Restart=on-failure
+RestartSec=30
+KillSignal=SIGINT
+TimeoutStopSec=45
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+* Enable service
+```
+sudo systemctl enable neard
+```
+* Start service dan lihat log nya
+```
+sudo systemctl start neard && journalctl -fu neard | ccze -A
+```
+
+Node sedang berjalan, Anda dapat melihat output log di konsol Anda. Node Anda harus menemukan rekan, mengunduh tajuk hingga 100%, dan kemudian mengunduh blok.
+
+![img](./images/2.png)
