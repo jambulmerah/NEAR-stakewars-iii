@@ -330,4 +330,18 @@ cat ~/.near/validator_key.json
 
 ![img](./images/12.png)
 
-###### 
+### Become a validator
+Untuk menjadi validator dan masuk ke dalam set validator, minimal harus memenuhi kriteria keberhasilan.
+
+- [x] Node harus disinkronkan sepenuhnya
+- [x] validator_key.jsonHarus ada di tempatnya
+- [x] Kontrak harus diinisialisasi dengan public_key divalidator_key.json
+- [x] Account_id harus disetel ke id kontrak staking pool
+- [x] Harus ada delegasi yang cukup untuk memenuhi harga kursi minimum. Lihat harga kursi [di sini](https://explorer.shardnet.near.org/nodes/validators).
+- [x] Proposal harus diajukan dengan melakukan ping ke kontrak
+- [x] Setelah proposal diterima, validator harus menunggu 2-3 epoch untuk masuk ke set validator
+- [x] Setelah di set validator, validator harus menghasilkan lebih dari 90% blok yang ditugaskan
+
+Periksa status menjalankan node validator. Jika “Validator” muncul, kumpulan Anda dipilih dalam daftar validator saat ini.
+
+## Mount staking pool
