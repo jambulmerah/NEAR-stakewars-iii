@@ -176,7 +176,7 @@ Perintah ini akan membuat struktur direktori dan akan menghasilkan `config.json`
 
 * `genesis.json`- File dengan semua data yang dimulai jaringan di genesis. Ini berisi akun awal, kontrak, kunci akses, dan catatan lain yang mewakili keadaan awal blockchain. File genesis.json adalah snapshot dari status jaringan pada suatu titik waktu. Di akun kontak, saldo, validator aktif, dan informasi lain tentang jaringan.
 
-* `node_key.json`- Sebuah file yang berisi kunci publik dan pribadi untuk node. Juga termasuk parameter opsional `--account-id` yang diperlukan untuk menjalankan node validator (tidak tercakup dalam dokumen ini, Nanti kita akan buat manual `validator_key.json` Di depan ).
+* `node_key.json`- Sebuah file yang berisi kunci publik dan pribadi untuk node. Juga termasuk parameter opsional `--account-id` yang diperlukan untuk menjalankan node validator (tidak tercakup dalam dokumen ini, Nanti kita akan membuat manual `validator_key.json` Di depan ).
 
 * `data/`- Folder di mana node NEAR akan menulis statusnya.
 
