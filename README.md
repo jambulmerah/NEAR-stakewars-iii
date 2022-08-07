@@ -176,7 +176,7 @@ Perintah ini akan membuat struktur direktori dan akan menghasilkan `config.json`
 
 * `genesis.json`- File dengan semua data yang dimulai jaringan di genesis. Ini berisi akun awal, kontrak, kunci akses, dan catatan lain yang mewakili keadaan awal blockchain. File genesis.json adalah snapshot dari status jaringan pada suatu titik waktu. Di akun kontak, saldo, validator aktif, dan informasi lain tentang jaringan.
 
-* `node_key.json`- Sebuah file yang berisi kunci publik dan pribadi untuk node. Juga termasuk parameter opsional `--account_id` yang diperlukan untuk menjalankan node validator (tidak tercakup dalam dokumen ini, Nanti kita akan buat manual `validator_key.json` Di depan ).
+* `node_key.json`- Sebuah file yang berisi kunci publik dan pribadi untuk node. Juga termasuk parameter opsional `--account-id` yang diperlukan untuk menjalankan node validator (tidak tercakup dalam dokumen ini, Nanti kita akan buat manual `validator_key.json` Di depan ).
 
 * `data/`- Folder di mana node NEAR akan menulis statusnya.
 
@@ -304,9 +304,30 @@ cat $HOME/.near-credentials/shardnet/*shardnet.near.json
 ##### Set up Vars `account_id` dan `pool_id`
 
 ```
-echo 'export account_id=$(cat .near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id)' >> ~/.bash_profile
-echo 'export pool_id=$(cat .near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id | sed "s/shardnet/factory.shardnet/")' >> ~/.bash_profile
+echo 'export account_id=$(cat ~/.near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id)' >> ~/.bash_profile
+echo 'export pool_id=$(cat ~/.near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id | sed "s/shardnet/factory.shardnet/")' >> ~/.bash_profile
 source ~/.bash_profile
 ```
-##### Buat file `validator_key.json`
+##### Check your vars
+```
+echo $account_id && echo $pool_id
+```
+![img](./images/11.png)
+
+##### Create file `validator_key.json`
+```
+cp ~/.near-credentials/shardnet/*.shardnet.near.json ~/.near/validator_key.json
+```
+Karna file `validator_key.json` yang kita buat bukan hasil dari saat init `--account-id` maka kita harus merubah `private_key` menjadi `secret_key` dan menambahkan `factory` pada `account_id`
+Use command:
+```
+sed -i 's/shardnet/factory.shardnet/;s/private/secret/' ~/.near/validator_key.json
+```
+Check perubahannya
+```
+cat ~/.near/validator_key.json
+```
+
+![img](./images/12.png)
+
 ###### 
