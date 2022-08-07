@@ -133,7 +133,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 Akan ada konfirmasi penginstall seperti ini.
 
-![img](./images/0.png)
+![img](./images/1.png)
 
 Ketik 1 kemudian enter
 
@@ -222,11 +222,41 @@ EOF
 ```
 sudo systemctl enable neard
 ```
-* Start service dan lihat log nya
+* Start service
 ```
-sudo systemctl start neard && journalctl -fu neard | ccze -A
+sudo systemctl start neard
+```
+* Lihat log nya
+```
+journalctl -fu neard | ccze -A
 ```
 
 Node sedang berjalan, Anda dapat melihat output log di konsol Anda. Node Anda harus menemukan rekan, mengunduh tajuk hingga 100%, dan kemudian mengunduh blok.
 
 ![img](./images/2.png)
+
+#### Melihat status block sync di rpc pusat
+
+Untuk mengetahui ketinggian block saat ini
+```
+curl -s https://rpc.shardnet.near.org/status | jq .sync_info
+```
+![img](./images/3.png)
+
+`latest_block_height` adalah ketinggian block pada saat output ini di tampilkan
+
+#### Melihat status sync di node rpc lokal milik anda
+
+```
+curl -s 127.0.0.1:3030/status
+```
+
+![img](./images/4.png)
+
+* Nilai `"epoch_id"` adalah `"111111111"` Berarti headers belum sepenuhnya 100% terunduh
+
+![img](./images/5.png)
+
+* Nilai `"epoch_id"` sudah berubah menunjukan headers 100% sepenuhnya terunduh. Tetapi nilai status `"syncing"` masih `"true"` menunjukan block masih proses sinkronisasi
+
+## Run node as validator
