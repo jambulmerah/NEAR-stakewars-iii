@@ -301,8 +301,12 @@ cat $HOME/.near-credentials/shardnet/*shardnet.near.json
 
 ![img](./images/10.png)
 
-###### Set up vars `account_id` dan `pool_id`
+##### Set up Vars `account_id` dan `pool_id`
 
-
+```
+echo 'export account_id=$(cat .near-credentials/shardnet/*.shardnet.near.json | jq -r .account_id)' >> ~/.bash_profile
+echo 'export pool_id=$(cat .near-credentials/shardnet/0xjambulmerah.shardnet.near.json | jq -r .account_id | sed "s/shardnet/factory.shardnet")' >> ~/.bash_profile
+source ~/.bash_profile
+```
 ##### Buat file `validator_key.json`
 ###### 
