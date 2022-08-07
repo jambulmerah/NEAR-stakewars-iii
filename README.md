@@ -259,4 +259,50 @@ curl -s 127.0.0.1:3030/status
 
 * Nilai `"epoch_id"` sudah berubah menunjukan headers 100% sepenuhnya terunduh. Tetapi nilai status `"syncing"` masih `"true"` menunjukan block masih proses sinkronisasi
 
-## Run node as validator
+## Mengaktifkan node sebagai validator
+
+#### Otorisasi dompet secara lokal
+
+Kunci akses penuh perlu diinstal secara lokal untuk dapat menandatangani transaksi melalui NEAR-CLI.
+Use command:
+```
+near login
+```
+> **NOTE**: Perintah ini meluncurkan browser web yang memungkinkan otorisasi kunci akses penuh untuk disalin secara lokal
+
+* 1 - Salin dan paste link yang di berikan di web browser
+
+![img](./images/6.png)
+
+> **NOTE**: Pastikan subdomain url adalah wallet.**shardnet**.near.org karna kita akan menggunkan jaringan shardnet 
+
+* 2 - Enter your wallet name dan berikan  akses ke NEAR-CLI
+
+![img](./images/7.png)
+
+* 3 - Setelah grant anda akan melihat halaman seperti ini. jangan panik, kembli ke konsol
+
+![img](./images/8.png)
+
+* 4 - Enter your wallet and press enter
+
+![img](./images/9.png)
+
+* 5 - Check your wallet
+
+Setelah sukses anda akan mendapatkan file json di `$HOME/.near-credentials/shardnet/` sama dengan nama wallet anda. Di dalamnya berisi `account_id`, `public_key` dan `private_key` 
+
+```
+ls $HOME/.near-credentials/shardnet/
+```
+```
+cat $HOME/.near-credentials/shardnet/*shardnet.near.json
+```
+
+![img](./images/10.png)
+
+###### Set up vars `account_id` dan `pool_id`
+
+
+##### Buat file `validator_key.json`
+###### 
